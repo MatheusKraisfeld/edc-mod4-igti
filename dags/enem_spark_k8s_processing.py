@@ -5,6 +5,7 @@ from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKube
 from airflow.operators.python_operator import PythonOperator
 from airflow.models import Variable
 import boto3
+import pathlib
 
 aws_access_key_id = Variable.get('aws_access_key_id')
 aws_secret_access_key = Variable.get('aws_secret_access_key')
