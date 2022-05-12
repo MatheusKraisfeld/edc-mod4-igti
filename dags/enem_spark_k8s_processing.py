@@ -42,7 +42,7 @@ with DAG(
     converte_parquet = SparkKubernetesOperator(
         task_id='converte_parquet',
         namespace="airflow",
-        application_file=open("/opt/airflow/dags/repo/dags/enem_converte_parquet.yaml ").read(),
+        application_file=open("enem_converte_parquet.yaml").read(),
         kubernetes_conn_id="kubernetes_default",
         do_xcom_push=True,
     )
