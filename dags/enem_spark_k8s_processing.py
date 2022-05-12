@@ -5,7 +5,6 @@ from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKube
 from airflow.operators.python_operator import PythonOperator
 from airflow.models import Variable
 import boto3
-import pathlib
 
 aws_access_key_id = Variable.get('aws_access_key_id')
 aws_secret_access_key = Variable.get('aws_secret_access_key')
@@ -42,7 +41,6 @@ with DAG(
     converte_parquet = SparkKubernetesOperator(
         task_id='converte_parquet',
         namespace="airflow",
-        # application_file=open("enem_converte_parquet.yaml").read(),
         application_file="enem_converte_parquet.yaml",
         kubernetes_conn_id="kubernetes_default",
         do_xcom_push=True,
@@ -58,7 +56,7 @@ with DAG(
     anonimiza_inscricao = SparkKubernetesOperator(
         task_id='anonimiza_inscricao',
         namespace="airflow",
-        application_file="/home/kraisfeld/edc-mod4-igti/dags/enem_anonimiza_inscricao.yaml ",
+        application_file="enem_anonimiza_inscricao.yaml",
         kubernetes_conn_id="kubernetes_default",
         do_xcom_push=True,
     )
@@ -78,7 +76,7 @@ with DAG(
     agrega_idade = SparkKubernetesOperator(
         task_id='agrega_idade',
         namespace="airflow",
-        application_file="/home/kraisfeld/edc-mod4-igti/dags/enem_agrega_idade.yaml ",
+        application_file="enem_agrega_idade.yaml",
         kubernetes_conn_id="kubernetes_default",
         do_xcom_push=True,
     )
@@ -93,7 +91,7 @@ with DAG(
     agrega_sexo = SparkKubernetesOperator(
         task_id='agrega_sexo',
         namespace="airflow",
-        application_file="/home/kraisfeld/edc-mod4-igti/dags/enem_agrega_sexo.yaml ",
+        application_file="enem_agrega_sexo.yaml",
         kubernetes_conn_id="kubernetes_default",
         do_xcom_push=True,
     )
@@ -108,7 +106,7 @@ with DAG(
     agrega_notas = SparkKubernetesOperator(
         task_id='agrega_notas',
         namespace="airflow",
-        application_file="/home/kraisfeld/edc-mod4-igti/dags/enem_agrega_notas.yaml ",
+        application_file="enem_agrega_notas.yaml",
         kubernetes_conn_id="kubernetes_default",
         do_xcom_push=True,
     )
@@ -123,7 +121,7 @@ with DAG(
     join_final = SparkKubernetesOperator(
         task_id='join_final',
         namespace="airflow",
-        application_file="/home/kraisfeld/edc-mod4-igti/dags/enem_join_final.yaml ",
+        application_file="enem_join_final.yaml",
         kubernetes_conn_id="kubernetes_default",
         do_xcom_push=True,
     )
