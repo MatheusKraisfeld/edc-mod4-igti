@@ -28,21 +28,21 @@ if __name__ == "__main__":
         spark
         .read
         .format("parquet")
-        .load("s3a://dl-processing-zone-741358071637/intermediarias/uf_idade")
+        .load("s3a://processing-zone-741358071637/intermediarias/uf_idade")
     )
 
     uf_sexo = (
         spark
         .read
         .format("parquet")
-        .load("s3a://dl-processing-zone-741358071637/intermediarias/uf_sexo")
+        .load("s3a://processing-zone-741358071637/intermediarias/uf_sexo")
     )
 
     uf_notas = (
         spark
         .read
         .format("parquet")
-        .load("s3a://dl-processing-zone-741358071637/intermediarias/uf_notas")
+        .load("s3a://processing-zone-741358071637/intermediarias/uf_notas")
     )
     
     print("****************")
@@ -60,7 +60,7 @@ if __name__ == "__main__":
         .write
         .mode("overwrite")
         .format("parquet")
-        .save("s3a://dl-consumer-zone-741358071637/enem_uf")
+        .save("s3a://delivery-zone-741358071637/enem_uf")
     )
 
     print("*********************")
