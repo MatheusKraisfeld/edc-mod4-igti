@@ -1,14 +1,15 @@
-
 import json
 
 import pendulum
 
 from airflow.decorators import dag, task
+
+
 @dag(
     schedule_interval=None,
     start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
     catchup=False,
-    tags=['example'],
+    tags=["example"],
 )
 def tutorial_taskflow_api_etl():
     """
@@ -19,6 +20,7 @@ def tutorial_taskflow_api_etl():
     located
     [here](https://airflow.apache.org/docs/apache-airflow/stable/tutorial_taskflow_api.html)
     """
+
     @task()
     def extract():
         """
@@ -31,6 +33,7 @@ def tutorial_taskflow_api_etl():
 
         order_data_dict = json.loads(data_string)
         return order_data_dict
+
     @task(multiple_outputs=True)
     def transform(order_data_dict: dict):
         """
@@ -44,6 +47,7 @@ def tutorial_taskflow_api_etl():
             total_order_value += value
 
         return {"total_order_value": total_order_value}
+
     @task()
     def load(total_order_value: float):
         """
@@ -53,7 +57,10 @@ def tutorial_taskflow_api_etl():
         """
 
         print(f"Total order value is: {total_order_value:.2f}")
+
     order_data = extract()
     order_summary = transform(order_data)
     load(order_summary["total_order_value"])
+
+
 tutorial_etl_dag = tutorial_taskflow_api_etl()

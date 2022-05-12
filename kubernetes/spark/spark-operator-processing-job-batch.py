@@ -17,7 +17,7 @@ conf = (
     .set("spark.jars.packages", "org.apache.hadoop:hadoop-aws:3.2.0")
     .set("spark.jars.repositories", "https://repos.spark-packages.org")
 )
-print('********** Conf **********')
+print("********** Conf **********")
 # apply config
 sc = SparkContext(conf=conf).getOrCreate()
 sc.setSystemProperty("com.amazonaws.services.s3.enableV4", "true")
