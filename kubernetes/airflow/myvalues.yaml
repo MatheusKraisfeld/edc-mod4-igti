@@ -230,7 +230,7 @@ allowPodLaunching: true
 
 # Environment variables for all airflow containers
 env: 
-  - name: AIRFLOW__LOGGING__REMOTE_LOGGING
+  - name: AIRFLOW__CORE__REMOTE_LOGGING
     value: 'True'
   - name: AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER
     value: "s3://datalake-kraisfeld-igti-edc/airflow-logs/"
