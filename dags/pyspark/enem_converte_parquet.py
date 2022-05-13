@@ -1,6 +1,8 @@
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import SparkSession
 
+print('***** INICIO *****')
+
 # set conf
 conf = (
     SparkConf()
@@ -13,16 +15,20 @@ conf = (
     .set("spark.jars.packages", "org.apache.hadoop:hadoop-aws:2.7.3")
 )
 
+print('***** SPARK CONFIG *****')
+
 # apply config
 sc = SparkContext(conf=conf).getOrCreate()
 
 
 if __name__ == "__main__":
 
+    print('***** MAIN *****')
+
     # init spark session
     spark = SparkSession.builder.appName("ENEM Job").getOrCreate()
 
-    spark.sparkContext.setLogLevel("WARN")
+    spark.sparkContext.setLogLevel("INFO")    
 
     df = (
         spark.read.format("csv")
