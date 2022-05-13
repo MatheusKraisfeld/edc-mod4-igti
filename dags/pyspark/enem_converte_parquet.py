@@ -27,7 +27,7 @@ if __name__ == "__main__":
     df = (
         spark.read.format("csv")
         .options(header="true", inferSchema="true", delimiter=";")
-        .load("s3a://landing-zone-741358071637/enem/")
+        .load("s3a://landing-zone-741358071637/enem/year=2019")
     )
 
     df.printSchema()
